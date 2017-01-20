@@ -2,14 +2,17 @@
 
 # input a pcap file from standard input
 INPUT_PCAP_FILE=$1
+HEADER=y
+SEPARATOR=,
+QUOTE=d
 
 # display standard output 
 tshark \
 -r ${INPUT_PCAP_FILE} \
 -T fields \
--E header=y \
--E separator=, \
--E quote=d \
+-E header=${HEADER} \
+-E separator=${SEPARATOR} \
+-E quote=${QUOTE} \
 -e frame.number \
 -e frame.time \
 -e frame.time_relative \
@@ -35,11 +38,9 @@ tshark \
 -e frame.ignored \
 -e frame.incomplete \
 -e frame.interface_id \
--e frame.len \
 -e frame.link_nr \
 -e frame.marked \
 -e frame.md5_hash \
--e frame.number \
 -e frame.offset_shift \
 -e frame.p2p_dir \
 -e frame.p_prot_data \
@@ -59,9 +60,7 @@ tshark \
 -e frame.pkt_len \
 -e frame.protocols \
 -e frame.ref_time \
--e frame.time \
 -e frame.time_delta \
 -e frame.time_delta_displayed \
 -e frame.time_epoch \
 -e frame.time_invalid \
--e frame.time_relative \
